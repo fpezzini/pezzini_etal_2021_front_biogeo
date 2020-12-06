@@ -1,9 +1,11 @@
 ---
-
-title: "R code for figures in Pezzini et al. 2021 Front. of Biogeography"
+title: "R code for figures in 
+Pezzini et al. 2021 Front. of Biogeography"
 output: html_document
 
 ---
+
+### Figure 5: Maximum likelihood phylogeny
 
 ```{r}
 library(ggtree)
@@ -13,20 +15,15 @@ library(viridis)
 brewer.pal(n = 10, name = "Paired") #list the name of the colours I will use later
 tree <- read.tree("ML_Ceiba_phylogeny_Pezzini_etal_2021_F_Biogeo.tre") # name of the file containing my phylogeny
 tree$node.label
-
 # GET NODE LABELS
 ggtree(tree) + geom_text(aes(label=node), hjust=+1.7) + geom_tiplab(size=2)
-
 p <- ggtree(tree, size=0.3) +
   xlim(0, 0.259)+
   geom_text2(aes(subset=!isTip, label=label), hjust=1.7, vjust=-0.5, size = 2.6)+
   geom_tiplab(size=3.4, hjust=-0.02)+
   geom_treescale(x=0.039, y=15, fontsize = 3.5, linesize = 0.3)
-
-
 p <- flip(p, 70, 71)
 p
-
 p <- p +  geom_cladelabel(node=72, label="Central and 
 South America", fontsize = 3.8, align=TRUE,  offset = .035) +
   geom_cladelabel(node=53, label="South 
@@ -44,6 +41,4 @@ p <- p +  geom_hilight(node=72, fill="#B2DF8A", alpha=0.5, extend = 0.0617) + #p
   geom_hilight(node=20, fill="#B2DF8A", alpha=0.5 , extend = 0.0851)+ #speciosa
   geom_hilight(node=71, fill="#CAB2D6", alpha=0.5 , extend = 0.0851)  # aesculifolia
 p
-
 ## ggsave("ML_Ceiba_phylogeny_Pezzini_etal_2021_F_Biogeo.pdf",dpi = 600) # saving the final figure in a PDF format. I normally leave it commented as it overwrites without warnings.
-

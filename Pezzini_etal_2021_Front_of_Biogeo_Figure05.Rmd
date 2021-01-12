@@ -1,7 +1,7 @@
 ---
 title: "R code for figures in 
 Pezzini et al. 2021 Front. of Biogeography"
-output: html_document
+output: rmarkdown::github_document
 
 ---
 
